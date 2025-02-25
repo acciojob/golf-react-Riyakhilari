@@ -24,10 +24,27 @@ class App extends Component {
 		}
     }
 
-    // bind ArrowRight keydown event
-    componentDidMount() {
-      
+     componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyDown);
+  }
+
+  renderBallOrButton() {
+    if (this.state.renderBall) {
+      return (
+        <div className="ball" style={this.state.ballPosition}></div>
+      );
+    } else {
+      return (
+        <button className="start" onClick={this.buttonClickHandler}>
+          Start
+        </button>
+      );
     }
+  }
 
     render() {
         return (
